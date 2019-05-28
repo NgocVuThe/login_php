@@ -1,0 +1,1 @@
+<h1>Đây là view Index</h1>
