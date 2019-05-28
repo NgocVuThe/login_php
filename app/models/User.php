@@ -9,5 +9,6 @@ class User extends BaseModel
     ];
 
 
-    //addddddddddddddddddddddddd
+
+   public  $kllddd;
 }
