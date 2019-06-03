@@ -2,11 +2,11 @@
     require "vendor/autoload.php";
     use App\Controller\HomeController;
     use App\Controller\StudentController;
-
+    use App\Controller\UserController;
     // require "app/controllers/HomeController.php";
     // require "app/controllers/StudentController.php";
     $url = isset($_GET['url']) ? $_GET['url'] : '/';
-
+    // var_dump($url);die;
     switch ($url) {
         case '/':
             $route = new HomeController();
@@ -41,7 +41,7 @@
             $route->updateStudent();
             break;
         case 'student/login':
-            $route = new StudentController();
+            $route = new UserController();
             $route->login();
             break;
         default:

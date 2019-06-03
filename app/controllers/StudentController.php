@@ -34,7 +34,8 @@ class StudentController
     public function editStudent()
     {
         $id = $_GET['id'];
-        $students = Student::find($id);
+        $students = Student::find(9);
+        var_dump($students);die;
         include "app/views/student/editstudent.php";
     }
 
@@ -58,20 +59,6 @@ class StudentController
         $students = new Student();
         $students->delete($id);
         header('location: list');
-
-    }
-
-    public function login(){
-        if(isset($_POST['btnsubmit'])){
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $users = User::all();
-            if($username == $users->username && $password == $users->passwp){
-
-            }
-            // var_dump($users);die;
-        }
-        include_once "app/views/student/login.php";
     }
 }
 

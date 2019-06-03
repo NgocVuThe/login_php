@@ -32,8 +32,12 @@ class BaseModel
         // var_dump($stmt);die;
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_CLASS, get_class($model));
-
         return $result;
+        // if(count($result)>0){
+        //     return $result[0];
+        // }else{
+        //     return null;
+        // }
         // var_dump($result);die;
     }
 
@@ -58,6 +62,58 @@ class BaseModel
         // var_dump($stmt);die;
     }
     
+    public static function where($arr)
+    {
+        $model = new static;
+        $model->sql = "SELECT * FROM $model->table WHERE ";
+        if(count($arr) == 2) {
+            $model->sql .= "$arr[0] = '$arr[1]'";
+        }
+        if(count($arr) == 3) {
+            $model->sql .= "$arr[0] $arr[1] '$arr[2]'";
+        }
+        return $model;
+    }
+
+    public function andWhere($arr)
+    {
+        $this->sql .= "and";
+        if(count($arr) == 2) {
+            $this->sql .= "$arr[0] = '$arr[1]'";
+        }
+        if(count($arr) == 3) {
+            $this->sql .= "$arr[0] $arr[1] '$arr[2]'";
+        }
+        return $this;
+    }
+
+    public function orWhere($arr)
+    {
+        $this->sql .= "or";
+        if(count($arr) == 2) {
+            $this->sql .= "$arr[0] = '$arr[1]'";
+        }
+        if(count($arr) == 3) {
+            $this->sql .= "$arr[0] $arr[1] '$arr[2]'";
+        }
+    }
+
+    public function get()
+    {
+        $stmt = $this->conn->prepare($this->sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS, get_class($this));
+        return $result;
+    }
     
+    public function first()
+    {
+       $list = $this->get();
+       if(count($list) > 0) {
+           return $list[0];
+       } else {
+           return null;
+       }
+    }
 
 }

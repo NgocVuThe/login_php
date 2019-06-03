@@ -31,10 +31,10 @@
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($students as $key => $student): ?>
+    <?php foreach ($students as $key => $student):?>
         <tr>
             <td><?= $key+1; ?></td>
-            <td><?= $student->name_student; ?></td>
+            <td><?= $student->name_student;?></td>
             <td><?= $student->phone; ?></td>
             <td><?= $student->class; ?></td>
             <td><?= $student->city; ?></td>

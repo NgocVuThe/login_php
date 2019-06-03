@@ -7,7 +7,4 @@ class HomeController
         include_once "app/views/index.php";
     }
 }
-
-
-
 ?>
